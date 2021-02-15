@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.github.mohamedwael.weather.modules.splash.SplashScreenFragment"
+        android:label="SplashScreenFragment"
+        tools:layout="@layout/splash_screen_fragment">
+        <action
+            android:id="@+id/action_splashScreenFragment_to_weatherFragment"
+            app:destination="@id/weatherFragment"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.github.mohamedwael.weather.modules.weather.WeatherFragment"
+        android:label="weather_fragment"
+        tools:layout="@layout/weather_fragment" />
+</navigation>
