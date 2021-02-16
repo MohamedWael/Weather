@@ -1,5 +1,7 @@
 package com.github.mohamedwael.weather.modules.splash
 
+import android.content.pm.PackageManager
+import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +11,8 @@ import kotlinx.coroutines.launch
 
 const val SPLASH_TIMER = 3000L
 
-class SplashScreenViewModel : ViewModel() {
+class SplashScreenViewModel() : ViewModel() {
+
     private val _startSplashCounter = MutableLiveData<Boolean>()
     val startSplashCounter: LiveData<Boolean>
         get() = _startSplashCounter
@@ -20,8 +23,8 @@ class SplashScreenViewModel : ViewModel() {
         }
     }
 
-   private suspend fun startSplashCounter() {
+    private suspend fun startSplashCounter() {
         delay(SPLASH_TIMER)
-       _startSplashCounter.value = true
+        _startSplashCounter.value = true
     }
 }

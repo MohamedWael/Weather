@@ -29,8 +29,11 @@
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 app:defaultQueryHint="@string/city_name"
-                app:iconifiedByDefault="true"
-                app:queryHint="@string/city_name" />
+                app:iconifiedByDefault="false"
+                app:query="@{viewModel.cityName}"
+                app:queryHint="@string/city_name"
+                app:queryTextListener="@{viewModel.queryTextListener}"
+                app:submitQuery="@{viewModel.submitQuery}" />
         </androidx.cardview.widget.CardView>
 
     </FrameLayout>
