@@ -24,7 +24,7 @@ class WeatherFragment : Fragment() {
         fun newInstance() = WeatherFragment()
     }
 
-    private val viewModel: WeatherViewModel by viewModels()
+    private val viewModel: WeatherViewModel by viewModels(factoryProducer = { WeatherViewModelFactory })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,8 +57,14 @@ class WeatherFragment : Fragment() {
             }
         }
 
-        viewModel.hideKeyboard.observe(viewLifecycleOwner){
-            if (it){
+        viewModel.errorMsg.observe(viewLifecycleOwner) { msg ->
+            context?.also {
+                Toast.makeText(it, msg, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.hideKeyboard.observe(viewLifecycleOwner) {
+            if (it) {
                 activity?.hideKeyboard()
             }
         }
@@ -68,8 +74,10 @@ class WeatherFragment : Fragment() {
     private fun getLocation(context: Context) {
         val locationManager =
             context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        viewModel.onLocationUpdate(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-            ?: locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER))
+        viewModel.onLocationUpdate(
+            locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+                ?: locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+        )
     }
 
     override fun onRequestPermissionsResult(

@@ -1,6 +1,8 @@
 <resources>
 	<string name="app_name">Weather</string>
-    <string name="hi">Hi</string>
+    <string name="hi">Hi there!,\ncheck the weather</string>
     <string name="city_name">City name</string>
     <string name="location_error">We want to get your location to get the weather to you</string>
+    <string name="min_max_temp">Max %1$s°↑ • Min %2$s°↓</string>
+    <string name="feels_like">"Feels like %1$s°"</string>
 </resources>

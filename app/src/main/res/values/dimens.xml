@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="temperature_top_margin">24dp</dimen>
+    <dimen name="weather_start_margin">8dp</dimen>
+    <dimen name="feels_like_top_margin">8dp</dimen>
+    <dimen name="date_top_margin">32dp</dimen>
+    <dimen name="date_text_size">16sp</dimen>
+    <dimen name="temperature_text_size">40sp</dimen>
+    <dimen name="weather_image_size">50dp</dimen>
+    <dimen name="weather_description_top_margin">8dp</dimen>
+    <dimen name="query_card_margin">8dp</dimen>
+    <dimen name="query_card_elevation">2dp</dimen>
+    <dimen name="query_card_corner_radius">8dp</dimen>
+    <dimen name="slogan_top_margin">8dp</dimen>
+    <dimen name="slogan_font_size">25sp</dimen>
+    <dimen name="logo_size">150dp</dimen>
+</resources>

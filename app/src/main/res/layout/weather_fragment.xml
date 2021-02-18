@@ -5,24 +5,31 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.github.mohamedwael.weather.modules.weather.WeatherViewModel" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".modules.weather.WeatherFragment">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+            android:id="@+id/cardView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:elevation="2dp"
-            app:cardCornerRadius="8dp">
+            android:layout_margin="@dimen/query_card_margin"
+            android:elevation="@dimen/query_card_elevation"
+            app:cardCornerRadius="@dimen/query_card_corner_radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
                 style="@style/Widget.AppCompat.SearchView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,5 +43,85 @@
                 app:submitQuery="@{viewModel.submitQuery}" />
         </androidx.cardview.widget.CardView>
 
-    </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/weather_start_margin"
+            android:layout_marginTop="@dimen/date_top_margin"
+            android:text="@{viewModel.date}"
+            android:textSize="@dimen/date_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView"
+            tools:text="February 17, 11:45 PM" />
+
+
+        <TextView
+            android:id="@+id/tvMaxMinTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/weather_start_margin"
+            android:layout_marginTop="@dimen/temperature_top_margin"
+            app:bindMaxMinTemperature="@{viewModel.minMaxTemperature}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDate"
+            tools:text="max 29°↑ . min 22°↓" />
+
+        <ImageView
+            android:id="@+id/ivWeather"
+            android:layout_width="@dimen/weather_image_size"
+            android:layout_height="@dimen/weather_image_size"
+            app:bindWeatherIcon="@{viewModel.icon}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvMaxMinTemp"
+            app:layout_constraintTop_toTopOf="@id/tvTemp" />
+
+        <TextView
+            android:id="@+id/tvWeatherDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/weather_description_top_margin"
+            android:text="@{viewModel.weatherDescription}"
+            app:layout_constraintEnd_toEndOf="@id/ivWeather"
+            app:layout_constraintStart_toStartOf="@id/ivWeather"
+            app:layout_constraintTop_toBottomOf="@id/ivWeather"
+            tools:text="Cloudy" />
+
+        <TextView
+            android:id="@+id/tvTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/weather_start_margin"
+            android:layout_marginTop="8dp"
+            android:text="@{viewModel.temperature}"
+            android:textSize="@dimen/temperature_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMaxMinTemp"
+            tools:text="25 °C" />
+
+        <TextView
+            android:id="@+id/tvFeelsLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/weather_start_margin"
+            android:layout_marginTop="@dimen/feels_like_top_margin"
+            app:bindFeelsLike="@{viewModel.feelsLike}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTemp"
+            tools:text="Feels like 24°" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isLoading? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
