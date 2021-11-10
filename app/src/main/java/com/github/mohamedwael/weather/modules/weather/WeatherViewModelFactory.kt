@@ -11,7 +11,7 @@ object WeatherViewModelFactory : ViewModelProvider.Factory {
         repo = weatherRepo
     }
 
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (WeatherViewModel::class.java.isAssignableFrom(modelClass)) {
             return WeatherViewModel(repo) as T
         } else {
