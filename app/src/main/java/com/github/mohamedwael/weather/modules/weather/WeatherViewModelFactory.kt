@@ -11,6 +11,7 @@ object WeatherViewModelFactory : ViewModelProvider.Factory {
         repo = weatherRepo
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (WeatherViewModel::class.java.isAssignableFrom(modelClass)) {
             return WeatherViewModel(repo) as T
