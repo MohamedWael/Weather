@@ -21,8 +21,8 @@ class WeatherViewModel(private val weatherRepo: WeatherRepo) : ViewModel() {
     val permissionsGranted: LiveData<Boolean>
         get() = _permissionsGranted
 
-    private val _errorMsg = MutableLiveData<String>()
-    val errorMsg: LiveData<String>
+    private val _errorMsg = MutableLiveData<String?>()
+    val errorMsg: LiveData<String?>
         get() = _errorMsg
 
     var geoCoder: Geocoder? = null
@@ -79,12 +79,12 @@ class WeatherViewModel(private val weatherRepo: WeatherRepo) : ViewModel() {
     val feelsLike: LiveData<String>
         get() = _feelsLike
 
-    private val _icon = MutableLiveData<String>()
-    val icon: LiveData<String>
+    private val _icon = MutableLiveData<String?>()
+    val icon: LiveData<String?>
         get() = _icon
 
-    private val _weatherDescription = MutableLiveData<String>()
-    val weatherDescription: LiveData<String>
+    private val _weatherDescription = MutableLiveData<String?>()
+    val weatherDescription: LiveData<String?>
         get() = _weatherDescription
 
 
@@ -129,7 +129,7 @@ class WeatherViewModel(private val weatherRepo: WeatherRepo) : ViewModel() {
                             weatherResponse.data?.main?.also { main ->
                                 _temperature.value = "${main.temp}°C"
                                 _minMaxTemperature.value = "${main.tempMax},${main.tempMin}"
-                                _feelsLike.value = "${main.feelsLike}"
+                                _feelsLike.value = "${main.feelsLike?:""}"
                                 _icon.value = weatherResponse?.data?.weather?.get(0)?.icon
                                 _weatherDescription.value = weatherResponse?.data?.weather?.get(0)?.description
                             }
