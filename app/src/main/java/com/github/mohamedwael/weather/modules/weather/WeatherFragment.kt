@@ -59,7 +59,7 @@ class WeatherFragment : Fragment() {
 
         viewModel.errorMsg.observe(viewLifecycleOwner) { msg ->
             context?.also {
-                Toast.makeText(it, msg, Toast.LENGTH_SHORT).show()
+                Toast.makeText(it, msg, Toast.LENGTH_LONG).show()
             }
         }
 
